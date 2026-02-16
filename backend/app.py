@@ -8,12 +8,11 @@ from routes.users import users_bp
 import os
 from routes.auth import auth_bp
 
-
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
     
-    CORS(app)   # allow frontend to talk with backend
+    CORS(app)
 
     db.init_app(app)
 
@@ -21,7 +20,6 @@ def create_app():
     app.register_blueprint(offices_bp)
     app.register_blueprint(users_bp)
     app.register_blueprint(auth_bp)
-
 
     with app.app_context():
         db.create_all()
@@ -33,9 +31,7 @@ def create_app():
     print("Blueprints:", app.blueprints)
     return app
 
-
 app = create_app()
-
 
 if __name__ == "__main__":
     print("server start...")
